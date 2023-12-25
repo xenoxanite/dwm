@@ -138,11 +138,11 @@ static const char *spmixcmd[] = {"a", "st", "-t", "spmix", "-g", "144x41", "-e",
 static const char *spmuscmd[] = {"m", "st", "-t", "spmus", "-g", "144x41", "-e", "cmus", NULL};
 static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "144x41", "-e", "calcurse", NULL};
 static const char *sprsscmd[] = {"r", "st", "-t", "sprss", "-g", "144x41", "-e", "newsboat", NULL};
-
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:style=bold:size=11";
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
 static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
-static const char *dmenucmd[] = { "dmenu_run", "-c", "-p", "󰍉 Run:", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, "-c", NULL };
 static const char *dmenupcmd[] = { "dmenu_prun", NULL };
 static const char *passmenucmd[]  = { "passmenu", NULL };
 static const char *fmcmd[]  = { "st", "-e", "nnn", NULL };
