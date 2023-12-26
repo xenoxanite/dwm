@@ -16,7 +16,6 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 1;        /* 0 means no title */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
-static const int showwfsymbol       = 0;        /* 0 means no window follow symbol */
 static const int showtitle          = 1;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
@@ -120,10 +119,6 @@ static const Layout layouts[] = {
 	{ "󰝤",      monocle },
 };
 
-/* window following */
-#define WFACTIVE '>'
-#define WFINACTIVE 'v'
-#define WFDEFAULT WFINACTIVE
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -180,7 +175,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,                     togglebar,      {0} },
 	{ MODKEY,                       XK_n,     				  shiftview,      { .i = +1 } },
 	{ MODKEY,                       XK_p,     				  shiftview,      { .i = -1 } },
-	{ MODKEY|ShiftMask,				XK_n,                     togglefollow,   {0} },
 	{ MODKEY,                       XK_j,                     focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                     focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_u,                     focusurgent,    {0} },
@@ -243,13 +237,12 @@ static const Key keys[] = {
 };
 
 /* button definitions */
-/* click can be ClkFollowSymbol, ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function           argument */
 	{ ClkButton,		        0,		          Button1,	      spawn,		         {.v = buttoncmd } },
 	{ ClkLtSymbol,          0,              Button1,        setlayout,         {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,         {.v = &layouts[2]} },
-	{ ClkFollowSymbol,      0,              Button1,        togglefollow,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,              {0} },
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,      {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigstatusbar,      {.i = 2} },
