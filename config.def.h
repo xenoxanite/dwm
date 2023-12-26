@@ -55,8 +55,8 @@ static const char *colors[][3]      = {
 /* autostart applications */
 static const char *const autostart[] = {
 	"dunst", NULL,
-  "load-wallpaper", NULL,
-	"picom", "-b", NULL,
+  	"load-wallpaper", NULL,
+	// "picom", "-b", NULL,
 	"flameshot", NULL,
 	"copyq", NULL,
 	"dwmblocks", NULL,
@@ -69,10 +69,10 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char *tagsalt[] = { "󰖟", "", "", "󰙯", "", "󰎈", "󰕝", "", "" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
-static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinepad		= 0;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
-static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+static const int ulineall 				= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const char *tagsel[][2] = {
 	{  normfgcolor, seltagbgcolor },
@@ -92,7 +92,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
-	// { "copyq",            NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
+	{ "copyq",            NULL,       NULL,     	  0,            1,          0,          1,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "discord",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
@@ -102,9 +102,8 @@ static const Rule rules[] = {
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
 	{ NULL,               NULL,       "spcldr",       0,            1,          0,          1,         -1,       'c' },
-	{ NULL,               NULL,       "sprss",        0,            1,          0,          1,         -1,       'r' },
 	{ NULL,               NULL,       "sptop",        0,            1,          0,          1,         -1,       'p' },
-	{ NULL,               NULL,       "Event Tester", 0,            0,          0,          1,         -1,       0 }, /* xev */
+	{ NULL,               NULL,       "Event Tester", 0,            0,          0,          1,         -1,        0  }, /* xev */
 };
 
 /* layout(s) */
@@ -124,7 +123,7 @@ static const Layout layouts[] = {
 /* window following */
 #define WFACTIVE '>'
 #define WFINACTIVE 'v'
-#define WFDEFAULT WFACTIVE
+#define WFDEFAULT WFINACTIVE
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -142,18 +141,16 @@ static const Layout layouts[] = {
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
 static const char *sptermcmd[] = {"s", "st", "-t", "spterm", "-g", "144x41", NULL};
-static const char *sptopcmd[] = {"p", "st", "-t", "sptop", "-g", "144x41", "-e", "htop", NULL};
-static const char *spmixcmd[] = {"a", "st", "-t", "spmix", "-g", "144x41", "-e", "pulsemixer", NULL};
-static const char *spmuscmd[] = {"m", "st", "-t", "spmus", "-g", "144x41", "-e", "cmus", NULL};
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "144x41", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "144x41", "-e", "pulsemixer", NULL};
+static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "144x41", "-e", "cmus", NULL};
 static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "144x41", "-e", "calcurse", NULL};
-static const char *sprsscmd[] = {"r", "st", "-t", "sprss", "-g", "144x41", "-e", "newsboat", NULL};
+static const char *spclipboard[] = {"v", "copyq", "show", NULL};
+
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
 static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *dmenupcmd[] = { "dmenu_prun", NULL };
-static const char *passmenucmd[]  = { "passmenu", NULL };
-static const char *fmcmd[]  = { "st", "-e", "nnn", NULL };
 static const char *buttoncmd[] = { "dmenu_run", "-p", "󰍉 Run:", "-z", "400px", "-x", "6px", "-y", "40px", NULL };
 
 static const char *volumecmd[3][5] = {
@@ -172,7 +169,6 @@ static const Key keys[] = {
 	/* modifier                     key                       function        argument */
 	{ MODKEY,                       XK_z,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
-	{ MODKEY|ShiftMask,             XK_d,                     spawn,          {.v = dmenupcmd } },
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volumecmd[0]} },
   	{0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = volumecmd[1]} },
@@ -210,8 +206,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,				  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,				  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,                     togglefullscr,  {0} },
-	{ MODKEY,                       XK_0,					  view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,					  tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_0,      				  view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,      				  tag,            {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_h,					  focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,					  focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,				  tagmon,         {.i = -1 } },
@@ -240,11 +236,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_a,      togglescratch,  {.v = spmixcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = spmuscmd } },
 	{ MODKEY|ShiftMask,             XK_c,      togglescratch,  {.v = spcldrcmd } },
-	{ MODKEY|ShiftMask,             XK_b,      togglescratch,  {.v = sprsscmd } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.v = sptopcmd } },
-
+	{ MODKEY|ShiftMask,             XK_b,      togglescratch,  {.v = spclipboard } },
 	/* program binds */
-	{ MODKEY|ShiftMask,				XK_p,											spawn,          {.v = passmenucmd } },
 	{ MODKEY,                       XK_Print,       					spawn,          {.v = scrotcmd } },
 };
 
