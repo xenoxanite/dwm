@@ -54,7 +54,6 @@ static const char *colors[][3]      = {
 /* autostart applications */
 static const char *const autostart[] = {
 	"dunst", NULL,
-  "load-wallpaper", NULL,
 	"flameshot", NULL,
 	"copyq", NULL,
 	"dwmblocks", NULL,
@@ -90,12 +89,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
-	{ "copyq",            NULL,       NULL,     	  0,            1,          0,          1,         -1,       'v' },
+	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          1,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "discord",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "st-256color",      NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
+	{ NULL,   NULL,   "Picture-in-Picture",           0,            1,          0,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
@@ -113,7 +113,6 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "󰕰",      tile },    /* first entry is default */
-	{ "󰡃",      tilewide },
 	{ "󰖲",      NULL },    /* no layout function means floating behavior */
 	{ "󰝤",      monocle },
 };
@@ -193,9 +192,8 @@ static const Key keys[] = {
 	{ MODKEY, 			                XK_q,                     killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,                     killunsel,      {0} },
 	{ MODKEY,                       XK_t,					            setlayout,      {.v = &layouts[0]} },
- 	{ MODKEY,                       XK_w,                     setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,					            setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,                     setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_f,					            setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,                     setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,				          setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,				          togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,                     togglefullscr,          {0} },
