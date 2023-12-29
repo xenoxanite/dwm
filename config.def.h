@@ -228,7 +228,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = spmuscmd } },
 	{ MODKEY|ShiftMask,             XK_c,      togglescratch,  {.v = spcldrcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.v = sptopcmd } },
-	{ MODKEY|ShiftMask,             XK_b,      togglescratch,  {.v = spclipboard } },
+	{ MODKEY,                       XK_v,      togglescratch,  {.v = spclipboard } },
 	/* program binds */
 	{ MODKEY,                       XK_Print,       					spawn,          {.v = scrotcmd } },
 };
