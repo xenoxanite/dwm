@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 	/*                      fg                bg                  border   */
 	[SchemeNorm]        = {normfgcolor,       normbgcolor,        normbordercolor },
 	[SchemeSel]         = {selfgcolor, 	      selbgcolor,         selbordercolor },
-	[SchemeButtonBar]   = {normfgcolor,        normbgcolor,	      normbordercolor }, // also apply on systray
+	[SchemeButtonBar]   = {normfgcolor,       normbgcolor,	      normbordercolor }, // also apply on systray
 	[SchemeTagsNorm]    = {normfgcolor,       normbgcolor,        normbordercolor }, // Tagbar left unselected {text,background,not used but cannot be empty}
 	[SchemeLayout]      = {normfgcolor,       normbgcolor,        normbordercolor },
 	[SchemeWF]          = {normfgcolor,       normbgcolor,        normbordercolor },
@@ -54,6 +54,7 @@ static const char *colors[][3]      = {
 /* autostart applications */
 static const char *const autostart[] = {
 	"dunst", NULL,
+	"picom", "-b", NULL,
 	"flameshot", NULL,
 	"copyq", NULL,
 	"dwmblocks", NULL,
@@ -89,13 +90,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
-	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          1,         -1,       'v' },
+	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          0,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "discord",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "st-256color",      NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
-	{ NULL,   NULL,   "Picture-in-Picture",           0,            1,          0,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
