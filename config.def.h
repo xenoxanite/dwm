@@ -54,7 +54,7 @@ static const char *colors[][3]      = {
 /* autostart applications */
 static const char *const autostart[] = {
 	"dunst", NULL,
-	"picom", "-b", NULL,
+	// "picom", "-b", NULL,
 	"flameshot", NULL,
 	"copyq", NULL,
 	"dwmblocks", NULL,
@@ -92,9 +92,11 @@ static const Rule rules[] = {
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
 	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          0,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
-	{ "firefox",          NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
-	{ "discord",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
-	{ "Spotify",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
+	{ "Emacs",            NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
+	{ "emacs",            NULL,       NULL,           0 << 1,       0,          0,          0,         -1,       0 },
+	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
+	{ "discord",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
+	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
 	{ "st-256color",      NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
@@ -142,6 +144,7 @@ static const char *spclipboard[] = {"v", "copyq", "show", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
+static const char *emacsmcmd[]  = { "emc", "--fullscreen", NULL };
 static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *buttoncmd[] = { "dmenu_run", "-p", "󰍉 Run:", "-z", "400px", "-x", "6px", "-y", "40px", NULL };
@@ -162,6 +165,7 @@ static const Key keys[] = {
 	/* modifier                     key                       function        argument */
 	{ MODKEY,                       XK_z,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
+	{ MODKEY,                       XK_e,                     spawn,          {.v = emacsmcmd } },
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volumecmd[0]} },
 	{0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = volumecmd[1]} },
