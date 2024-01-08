@@ -32,8 +32,8 @@ static const int horizpadbar = 12; /* horizontal padding for statusbar */
 static const int vertpadbar = 12;  /* vertical padding for statusbar */
 static const int vertpad = 0;      /* vertical padding of bar */
 static const int sidepad = 0;      /* horizontal padding of bar */
-static const char *fonts[] = {"JetBrainsMono Nerd Font:style=Bold:size=10"};
-static const char dmenufont[] = "JetBrainsMono Nerd Font:style=bold:size=10";
+static const char *fonts[] = {"JetBrainsMono Nerd font:style=bold:size=12"};
+static const char dmenufont[] = "JetBrainsMono Nerd font:style=bold:size=12";
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[] = "#bbbbbb";
@@ -100,6 +100,8 @@ static const Rule rules[] = {
     {"emacs", NULL, NULL, 1 << 1, 0, 0, 0, -1, 0},
     {"firefox", NULL, NULL, 1 << 2, 0, 0, 0, -1, 0},
     {"discord", NULL, NULL, 1 << 3, 0, 0, 0, -1, 0},
+    {"VencordDesktop", NULL, NULL, 1 << 3, 0, 0, 0, -1, 0},
+    {"vencorddesktop", NULL, NULL, 1 << 3, 0, 0, 0, -1, 0},
     {"Spotify", NULL, NULL, 1 << 4, 0, 0, 0, -1, 0},
     {"st-256color", NULL, NULL, 0, 0, 1, 0, -1, 0},
     {NULL, NULL, "spterm", 0, 1, 0, 1, -1, 's'},
