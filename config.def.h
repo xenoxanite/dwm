@@ -13,10 +13,10 @@ static const unsigned int systrayiconsize = 16; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int showbutton         = 1;        /* 0 means no title */
+static const int showbutton         = 0;        /* 0 means no title */
 static const int showtags           = 1;        /* 0 means no tags */
-static const int showlayout         = 1;        /* 0 means no layout indicator */
-static const int showtitle          = 1;        /* 0 means no title */
+static const int showlayout         = 0;        /* 0 means no layout indicator */
+static const int showtitle          = 0;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -77,12 +77,11 @@ static const Rule rules[] = {
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
 	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          0,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
-	{ "Emacs",            NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
-	{ "emacs",            NULL,       NULL,           0 << 1,       0,          0,          0,         -1,       0 },
+	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
-	{ "discord",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
+	{ "VencordDesktop",   NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
-	{ "st-256color",      NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
+	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
@@ -129,7 +128,7 @@ static const char *spclipboard[] = {"v", "copyq", "show", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
-static const char *emacsmcmd[]  = { "emc", "--fullscreen", NULL };
+static const char *nvimcmd[]  = { "st", "-t", "neovim", "-e", "nvim", NULL };
 static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *buttoncmd[] = { "dmenu_run", "-p", "󰍉 Run:", "-z", "400px", "-x", "6px", "-y", "40px", NULL };
@@ -150,7 +149,7 @@ static const Key keys[] = {
 	/* modifier                     key                       function        argument */
 	{ MODKEY,                       XK_z,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
-	{ MODKEY,                       XK_e,                     spawn,          {.v = emacsmcmd } },
+	{ MODKEY,                       XK_e,                     spawn,          {.v = nvimcmd } },
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volumecmd[0]} },
 	{0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = volumecmd[1]} },
