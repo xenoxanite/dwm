@@ -15,7 +15,7 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 0;        /* 0 means no title */
 static const int showtags           = 1;        /* 0 means no tags */
-static const int showlayout         = 0;        /* 0 means no layout indicator */
+static const int showlayout         = 1;        /* 0 means no layout indicator */
 static const int showtitle          = 0;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
@@ -26,14 +26,12 @@ static const int vertpadbar         = 12;       /* vertical padding for statusba
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=10" };
-static const char dmenufont[]       = "JetBrainsMono Nerd Font:style=bold:size=10";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-// static char underlinecolor[]        = "#005577";
 static char seltagbgcolor[]         = "#313244";
 static const char *colors[][3]      = {
   
@@ -53,10 +51,10 @@ static const char *colors[][3]      = {
 
 /* autostart applications */
 static const char *const autostart[] = {
+	"load-wallpaper", NULL,
 	"dunst", NULL,
-	// "picom", "-b", NULL,
-	"flameshot", NULL,
-	"copyq", NULL,
+	"xcompmgr", NULL,
+	// "copyq", NULL,
 	"dwmblocks", NULL,
 	NULL /* terminate */
 };
@@ -64,7 +62,7 @@ static const char *const autostart[] = {
 /* tagging */
 static const char buttonbar[] = " ";
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "󰖟", "", "", "󰙯", "", "󰎈", "󰕝", "", "" };
+static const char *tagsalt[] = { "", "", "󰖟", "󰙯", "󰎈", "", "󰕝", "", "" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 
@@ -77,12 +75,14 @@ static const Rule rules[] = {
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
 	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          0,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
+	{ "Sxiv",             NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
 	{ "VencordDesktop",   NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
-	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
-	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       's' },
+	{ "St",               NULL,       NULL,           1 << 0,       0,          1,          0,         -1,       0 },
+	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       't' },
+	{ NULL,               NULL,       "random",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
 	{ NULL,               NULL,       "spcldr",       0,            1,          0,          1,         -1,       'c' },
@@ -91,7 +91,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -119,19 +119,18 @@ static const Layout layouts[] = {
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *sptermcmd[] = {"s", "st", "-t", "spterm", "-g", "144x41", NULL};
-static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "144x41", "-e", "btop", NULL};
-static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "144x41", "-e", "pulsemixer", NULL};
-static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "144x41", "-e", "cmus", NULL};
-static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "144x41", "-e", "calcurse", NULL};
+static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "180x40", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sprandomcmd[] = { "s",  NULL };
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "180x40", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "180x40", "-e", "pulsemixer", NULL};
+static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "180x40", "-e", "cmus", NULL};
+static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "180x40", "-e", "calcurse", NULL};
 static const char *spclipboard[] = {"v", "copyq", "show", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
-static const char *nvimcmd[]  = { "st", "-t", "neovim", "-e", "nvim", NULL };
+static const char *nvimcmd[]  = { "st", "-c", "neovim", "-e", "nvim", NULL };
 static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *buttoncmd[] = { "dmenu_run", "-p", "󰍉 Run:", "-z", "400px", "-x", "6px", "-y", "40px", NULL };
 
 static const char *volumecmd[3][5] = {
 	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05+", NULL },
@@ -143,11 +142,11 @@ static const char *playerctlcmd[3][3] = {
 	{ "playerctl", "next", NULL },
 	{ "playerctl", "previous", NULL },
 };
-static const char *scrotcmd[] = { "flameshot", "gui", NULL };
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static const Key keys[] = {
 	/* modifier                     key                       function        argument */
-	{ MODKEY,                       XK_z,                     spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_z,                     spawn,          SHCMD("dmenu_run -c") },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
 	{ MODKEY,                       XK_e,                     spawn,          {.v = nvimcmd } },
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
@@ -210,22 +209,22 @@ static const Key keys[] = {
 
   /* scratchpad binds */
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sptermcmd } },
-	{ MODKEY|ShiftMask,             XK_grave,  removescratch,  {.v = sptermcmd } },
-	{ MODKEY|ControlMask,           XK_grave,  setscratch,     {.v = sptermcmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = sprandomcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      removescratch,  {.v = sprandomcmd } },
+	{ MODKEY|ControlMask,           XK_s,      setscratch,     {.v = sprandomcmd } },
 	{ MODKEY|ShiftMask,             XK_a,      togglescratch,  {.v = spmixcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = spmuscmd } },
 	{ MODKEY|ShiftMask,             XK_c,      togglescratch,  {.v = spcldrcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.v = sptopcmd } },
 	{ MODKEY,                       XK_v,      togglescratch,  {.v = spclipboard } },
 	/* program binds */
-	{ MODKEY,                       XK_Print,       					spawn,          {.v = scrotcmd } },
+	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_menu")},
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function           argument */
-	{ ClkButton,		        0,		          Button1,	      spawn,		         {.v = buttoncmd } },
 	{ ClkLtSymbol,          0,              Button1,        setlayout,         {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,         {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,              {0} },
