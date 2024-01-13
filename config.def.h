@@ -16,7 +16,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 0;        /* 0 means no title */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
-static const int showtitle          = 0;        /* 0 means no title */
+static const int showtitle          = 1;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -51,11 +51,11 @@ static const char *colors[][3]      = {
 
 /* autostart applications */
 static const char *const autostart[] = {
-	"load-wallpaper", NULL,
 	"dunst", NULL,
 	"xcompmgr", NULL,
-	// "copyq", NULL,
+	"greenclip", "daemon", NULL,
 	"dwmblocks", NULL,
+	// "load-wallpaper", NULL,
 	NULL /* terminate */
 };
 
@@ -73,7 +73,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
-	{ "copyq",            NULL,       NULL,     	    0,            1,          0,          0,         -1,       'v' },
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "Sxiv",             NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
@@ -81,7 +80,7 @@ static const Rule rules[] = {
 	{ "VencordDesktop",   NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
 	{ "St",               NULL,       NULL,           1 << 0,       0,          1,          0,         -1,       0 },
-	{ NULL,               NULL,       "spterm",       0,            1,          0,          1,         -1,       't' },
+	{ NULL,               NULL,       "spterm",       0,            1,          1,          0,         -1,       't' },
 	{ NULL,               NULL,       "random",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
@@ -125,7 +124,6 @@ static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "180x40", "-e"
 static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "180x40", "-e", "pulsemixer", NULL};
 static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "180x40", "-e", "cmus", NULL};
 static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "180x40", "-e", "calcurse", NULL};
-static const char *spclipboard[] = {"v", "copyq", "show", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
@@ -146,9 +144,11 @@ static const char *playerctlcmd[3][3] = {
 
 static const Key keys[] = {
 	/* modifier                     key                       function        argument */
-	{ MODKEY,                       XK_z,                     spawn,          SHCMD("dmenu_run -c") },
+	{ MODKEY,                       XK_z,                     spawn,          SHCMD("desktop_dmenu") },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
 	{ MODKEY,                       XK_e,                     spawn,          {.v = nvimcmd } },
+	{ MODKEY,                       XK_v,                     spawn,          SHCMD("clipboard_dmenu")},
+	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_dmenu")},
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volumecmd[0]} },
 	{0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = volumecmd[1]} },
@@ -210,15 +210,13 @@ static const Key keys[] = {
   /* scratchpad binds */
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sptermcmd } },
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = sprandomcmd } },
-	{ MODKEY|ShiftMask,             XK_s,      removescratch,  {.v = sprandomcmd } },
-	{ MODKEY|ControlMask,           XK_s,      setscratch,     {.v = sprandomcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      setscratch,     {.v = sprandomcmd } },
+	{ MODKEY|ControlMask,           XK_s,      removescratch,  {.v = sprandomcmd } },
 	{ MODKEY|ShiftMask,             XK_a,      togglescratch,  {.v = spmixcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = spmuscmd } },
 	{ MODKEY|ShiftMask,             XK_c,      togglescratch,  {.v = spcldrcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.v = sptopcmd } },
-	{ MODKEY,                       XK_v,      togglescratch,  {.v = spclipboard } },
 	/* program binds */
-	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_menu")},
 };
 
 /* button definitions */

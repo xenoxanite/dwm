@@ -664,44 +664,50 @@ buttonpress(XEvent *e)
 		if(ev->x < x && showbutton) {
 			click = ClkButton;
 		} else {
-		do
-		  if (showtags)
-			  x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
-		if (i < LENGTH(tags) && showtags) {
-			click = ClkTagBar;
-			arg.ui = 1 << i;
-		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
-			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - statusw - getsystraywidth() && showstatus) {
-      x = selmon->ww - statusw - getsystraywidth();
-			click = ClkStatusText;
-			char *text, *s, ch;
-			statussig = 0;
-			for (text = s = stext; *s && x <= ev->x; s++) {
-				if ((unsigned char)(*s) < ' ') {
-					ch = *s;
-					*s = '\0';
-					x += TEXTW(text) - lrpad;
-					*s = ch;
-					text = s + 1;
-					if (x >= ev->x)
-						break;
-					statussig = ch;
-				} else if (*s == '^') {
-					*s = '\0';
-					x += TEXTW(text) - lrpad;
-					*s = '^';
-					if (*(++s) == 'f')
-						x += atoi(++s);
-					while (*(s++) != '^');
-					text = s;
-					s--;
-				}
-			}
-    } else if (showtitle)
-			  click = ClkWinTitle;
-    }
+      unsigned int occ = 0;
+      for(c = m->clients; c; c=c->next)
+        occ |= c->tags;
+      do {
+        /* Do not reserve space for vacant tags */
+        if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+          continue;
+        if (showtags)
+          x += TEXTW(tags[i]);
+		} while (ev->x >= x && ++i < LENGTH(tags));
+        if (i < LENGTH(tags) && showtags) {
+          click = ClkTagBar;
+          arg.ui = 1 << i;
+        } else if (ev->x < x + TEXTW(selmon->ltsymbol))
+          click = ClkLtSymbol;
+        else if (ev->x > selmon->ww - statusw - getsystraywidth() && showstatus) {
+          x = selmon->ww - statusw - getsystraywidth();
+          click = ClkStatusText;
+          char *text, *s, ch;
+          statussig = 0;
+          for (text = s = stext; *s && x <= ev->x; s++) {
+            if ((unsigned char)(*s) < ' ') {
+              ch = *s;
+              *s = '\0';
+              x += TEXTW(text) - lrpad;
+              *s = ch;
+              text = s + 1;
+              if (x >= ev->x)
+                break;
+              statussig = ch;
+            } else if (*s == '^') {
+              *s = '\0';
+              x += TEXTW(text) - lrpad;
+              *s = '^';
+              if (*(++s) == 'f')
+                x += atoi(++s);
+              while (*(s++) != '^');
+              text = s;
+              s--;
+            }
+          }
+        } else if (showtitle)
+          click = ClkWinTitle;
+      }
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
 		restack(selmon);
@@ -1195,14 +1201,13 @@ drawbar(Monitor *m)
     }
 	for (i = 0; i < LENGTH(tags); i++) {
     if (showtags) {
+		/* Do not draw vacant tags */
+		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+			continue;
       w = TEXTW(tags[i]);
       wdelta = selmon->alttag ? abs(TEXTW(tags[i]) - TEXTW(tagsalt[i])) / 2 : 0;
       drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
       drw_text(drw, x, 0, w, bh, wdelta + lrpad / 2, (selmon->alttag ? tagsalt[i] : tags[i]), urg & 1 << i);
-      if (occ & 1 << i)
-        drw_rect(drw, x + boxs, boxs, boxw, boxw,
-          m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-          urg & 1 << i);
       x += w;
     }
 	}
