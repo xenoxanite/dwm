@@ -13,7 +13,7 @@ static const unsigned int systrayiconsize = 16; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int showbutton         = 0;        /* 0 means no title */
+static const int showbutton         = 0;        /* 0 means no button */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
 static const int showtitle          = 1;        /* 0 means no title */
@@ -25,7 +25,7 @@ static const int horizpadbar        = 12;       /* horizontal padding for status
 static const int vertpadbar         = 12;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=10" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=10.5" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -54,6 +54,7 @@ static const char *const autostart[] = {
 	"dunst", NULL,
 	"xcompmgr", NULL,
 	"greenclip", "daemon", NULL,
+  "auto-power-off", NULL,
 	"dwmblocks", NULL,
 	// "load-wallpaper", NULL,
 	NULL /* terminate */
