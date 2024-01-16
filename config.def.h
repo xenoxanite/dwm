@@ -56,7 +56,7 @@ static const char *const autostart[] = {
 	"greenclip", "daemon", NULL,
   "auto-power-off", NULL,
 	"dwmblocks", NULL,
-	// "load-wallpaper", NULL,
+	"load-wallpaper", NULL,
 	NULL /* terminate */
 };
 
