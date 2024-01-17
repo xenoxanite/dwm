@@ -16,13 +16,13 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 0;        /* 0 means no button */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
-static const int showtitle          = 1;        /* 0 means no title */
+static const int showtitle          = 0;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 4;        /* 2 is the default spacing around the bar's font */
-static const int horizpadbar        = 12;       /* horizontal padding for statusbar */
-static const int vertpadbar         = 12;       /* vertical padding for statusbar */
+static const int horizpadbar        = 10;       /* horizontal padding for statusbar */
+static const int vertpadbar         = 10;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=10.5" };
@@ -51,7 +51,13 @@ static const char *colors[][3]      = {
 
 /* autostart applications */
 static const char *const autostart[] = {
-	// "load-wallpaper", NULL,
+
+  "load-wallpaper", NULL,
+  "schedule-power-off", NULL,
+  "dwmblocks", NULL,
+  "dunst", NULL,
+  "xcompmgr", NULL,
+  "greenclip", "daemon", NULL,
 	NULL /* terminate */
 };
 
