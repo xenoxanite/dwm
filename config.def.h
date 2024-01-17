@@ -51,12 +51,7 @@ static const char *colors[][3]      = {
 
 /* autostart applications */
 static const char *const autostart[] = {
-	"dunst", NULL,
-	"xcompmgr", NULL,
-	"greenclip", "daemon", NULL,
-  "auto-power-off", NULL,
-	"dwmblocks", NULL,
-	"load-wallpaper", NULL,
+	// "load-wallpaper", NULL,
 	NULL /* terminate */
 };
 
@@ -119,17 +114,17 @@ static const Layout layouts[] = {
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "180x40", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "150x30", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
 static const char *sprandomcmd[] = { "s",  NULL };
-static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "180x40", "-e", "btop", NULL};
-static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "180x40", "-e", "pulsemixer", NULL};
-static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "180x40", "-e", "cmus", NULL};
-static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "180x40", "-e", "calcurse", NULL};
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "150x30", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "150x30", "-e", "pulsemixer", NULL};
+static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "150x30", "-e", "cmus", NULL};
+static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "150x30", "-e", "calcurse", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
 static const char *nvimcmd[]  = { "st", "-c", "neovim", "-e", "nvim", NULL };
-static const char *wallpapercmd[] = {"wallpaper-picker", NULL};
+static const char *wallpapercmd[] = {"set-wallpaper", NULL};
 
 static const char *volumecmd[3][5] = {
 	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05+", NULL },
