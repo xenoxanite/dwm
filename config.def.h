@@ -25,7 +25,7 @@ static const int horizpadbar        = 10;       /* horizontal padding for status
 static const int vertpadbar         = 10;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=Bold:size=10.5" };
+static const char *fonts[]          = { "FantasqueSansM Nerd Font:style=Bold:size=12" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -51,12 +51,12 @@ static const char *colors[][3]      = {
 
 /* autostart applications */
 static const char *const autostart[] = {
-
   "load-wallpaper", NULL,
   "schedule-power-off", NULL,
   "dwmblocks", NULL,
   "dunst", NULL,
   "xcompmgr", NULL,
+  "autolock", NULL,
   "greenclip", "daemon", NULL,
 	NULL /* terminate */
 };
@@ -64,7 +64,7 @@ static const char *const autostart[] = {
 /* tagging */
 static const char buttonbar[] = " ";
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "", "", "󰖟", "󰙯", "󰎈", "", "󰕝", "", "" };
+static const char *tagsalt[] = { "TERM", "VIM", "WWW", "CHAT", "MUSIC", "MOVIE", "TOOLS", "GAMES", "" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 
@@ -146,7 +146,7 @@ static const char *playerctlcmd[3][3] = {
 
 static const Key keys[] = {
 	/* modifier                     key                       function        argument */
-	{ MODKEY,                       XK_z,                     spawn,          SHCMD("desktop_dmenu") },
+	{ MODKEY,                       XK_z,                     spawn,          SHCMD("dmenu_recent -c") },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
 	{ MODKEY,                       XK_e,                     spawn,          {.v = nvimcmd } },
 	{ MODKEY,                       XK_v,                     spawn,          SHCMD("clipboard_dmenu")},
