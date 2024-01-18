@@ -120,12 +120,12 @@ static const Layout layouts[] = {
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "150x30", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "170x40", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "170x40", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "170x40", "-e", "pulsemixer", NULL};
+static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "170x40", "-e", "cmus", NULL};
+static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "170x40", "-e", "calcurse", NULL};
 static const char *sprandomcmd[] = { "s",  NULL };
-static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "150x30", "-e", "btop", NULL};
-static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "150x30", "-e", "pulsemixer", NULL};
-static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "150x30", "-e", "cmus", NULL};
-static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "150x30", "-e", "calcurse", NULL};
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
