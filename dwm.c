@@ -325,6 +325,8 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
+
+
 static void shiftview(const Arg *arg);
 static void autostart_exec(void);
 

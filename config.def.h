@@ -1,10 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
+#include "fibonacci.c"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int no_border = 0;        /* no_border for single window */
 static const unsigned int gappx     = 6;       /* gaps between windows */
+
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -92,7 +93,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -102,6 +103,8 @@ static const Layout layouts[] = {
 	{ "󰕰",      tile },    /* first entry is default */
 	{ "󰖲",      NULL },    /* no layout function means floating behavior */
 	{ "󰝤",      monocle },
+ 	{ "󱉵",      spiral },
+ 	{ "󱋃",      dwindle },
 };
 
 
@@ -184,6 +187,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,					            setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                     setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,				          setlayout,      {0} },
+	{ MODKEY,                       XK_u,                     setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,                     setlayout,      {.v = &layouts[4]} },
 	{ MODKEY|ShiftMask,             XK_space,				          togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,                     togglefullscr,          {0} },
 	{ MODKEY,                       XK_0,      				        view,           {.ui = ~0 } },
