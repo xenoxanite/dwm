@@ -20,7 +20,7 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showtitle          = 1;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 4;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
 static const int vertpadbar         = 10;       /* vertical padding for statusbar */
@@ -57,7 +57,6 @@ static const char *const autostart[] = {
   "dwmblocks", NULL,
   "dunst", NULL,
   "xcompmgr", NULL,
-  "autolock", NULL,
   "greenclip", "daemon", NULL,
 	NULL /* terminate */
 };
@@ -65,7 +64,7 @@ static const char *const autostart[] = {
 /* tagging */
 static const char buttonbar[] = " ";
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "TERM", "VIM", "WWW", "CHAT", "MUSIC", "MOVIE", "TOOLS", "GAMES", "" };
+static const char *tagsalt[] = { "T", "E", "W", "C", "M", "V", "U", "G", "F" };
 static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 
@@ -80,9 +79,9 @@ static const Rule rules[] = {
 	{ "Sxiv",             NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
-	{ "VencordDesktop",   NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
+	{ "vesktop",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
-	{ "St",               NULL,       NULL,           1 << 0,       0,          1,          0,         -1,       0 },
+	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          1,          0,         -1,       't' },
 	{ NULL,               NULL,       "random",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
