@@ -23,7 +23,7 @@ static const int showfloating       = 1;        /* 0 means no floating indicator
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 4;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
-static const int vertpadbar         = 10;       /* vertical padding for statusbar */
+static const int vertpadbar         = 8;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=Bold:size=10" };
