@@ -13,7 +13,7 @@ static const unsigned int systrayspacing = 10;  /* systray spacing */
 static const unsigned int systrayiconsize = 14; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
-static const int showbar            = 0;        /* 0 means no bar */
+static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 0;        /* 0 means no button */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
@@ -99,9 +99,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "󰝤",      monocle },
-	{ "󰖲",      NULL },    /* no layout function means floating behavior */
 	{ "󰕰",      tile },    /* first entry is default */
+	{ "󰖲",      NULL },    /* no layout function means floating behavior */
+	{ "󰝤",      monocle },
  	{ "󱉵",      spiral },
  	{ "󱋃",      dwindle },
 };
@@ -182,9 +182,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,                   view,           {0} },
 	{ MODKEY, 			                XK_q,                     killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,                     killunsel,      {0} },
-	{ MODKEY,                       XK_m,                     setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_t,					            setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_t,					            setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,					            setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,                     setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,				          setlayout,      {0} },
 	{ MODKEY,                       XK_u,                     setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_o,                     setlayout,      {.v = &layouts[4]} },
