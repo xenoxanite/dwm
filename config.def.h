@@ -83,6 +83,7 @@ static const Rule rules[] = {
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
 	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          1,          0,         -1,       't' },
+	{ NULL,               NULL,       "sptgpt",       0,            1,          1,          0,         -1,       'g' },
 	{ NULL,               NULL,       "random",       0,            1,          0,          1,         -1,       's' },
 	{ NULL,               NULL,       "spmix",        0,            1,          0,          1,         -1,       'a' },
 	{ NULL,               NULL,       "spmus",        0,            1,          0,          1,         -1,       'm' },
@@ -123,6 +124,7 @@ static const Layout layouts[] = {
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
 static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "160x35", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptgptcmd[] = {"g", "st", "-t", "sptgpt", "-g", "160x35", "-e", "tgpt", "-m", NULL};
 static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "160x35", "-e", "btop", NULL};
 static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "160x35", "-e", "pulsemixer", NULL};
 static const char *spmuscmd[]  = {"m", "st", "-t", "spmus", "-g", "160x35", "-e", "cmus", NULL};
@@ -215,6 +217,7 @@ static const Key keys[] = {
 
   /* scratchpad binds */
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sptermcmd } },
+	{ MODKEY|ShiftMask,             XK_t,      togglescratch,  {.v = sptgpt } },
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = sprandomcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      setscratch,     {.v = sprandomcmd } },
 	{ MODKEY|ControlMask,           XK_s,      removescratch,  {.v = sprandomcmd } },
