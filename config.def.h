@@ -217,7 +217,7 @@ static const Key keys[] = {
 
   /* scratchpad binds */
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sptermcmd } },
-	{ MODKEY|ShiftMask,             XK_t,      togglescratch,  {.v = sptgpt } },
+	{ MODKEY|ShiftMask,             XK_t,      togglescratch,  {.v = sptgptcmd } },
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = sprandomcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      setscratch,     {.v = sprandomcmd } },
 	{ MODKEY|ControlMask,           XK_s,      removescratch,  {.v = sprandomcmd } },
