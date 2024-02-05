@@ -26,14 +26,13 @@ static const int horizpadbar        = 4;       /* horizontal padding for statusb
 static const int vertpadbar         = 8;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=Bold:size=10" };
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=Bold:size=11" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-static char seltagbgcolor[]         = "#313244";
 static const char *colors[][3]      = {
   
 	/*                      fg                bg                  border   */
@@ -81,6 +80,7 @@ static const Rule rules[] = {
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
 	{ "vesktop",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
+	{ "Nemo",             NULL,       NULL,           0,            1,          1,          0,         -1,       0 },
 	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ NULL,               NULL,       "spterm",       0,            1,          1,          0,         -1,       't' },
 	{ NULL,               NULL,       "sptgpt",       0,            1,          1,          0,         -1,       'g' },
@@ -148,9 +148,14 @@ static const char *playerctlcmd[3][3] = {
 
 static const Key keys[] = {
 	/* modifier                     key                       function        argument */
-	{ MODKEY,                       XK_z,                     spawn,          SHCMD("dmenu_recent -c") },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = wallpapercmd } },
-	{ MODKEY,                       XK_e,                     spawn,          {.v = nvimcmd } },
+	{ MODKEY,                       XK_n,                     spawn,          {.v = nvimcmd } },
+
+	{ MODKEY,                       XK_z,                     spawn,          SHCMD("rofi -show drun -theme ~/.config/rofi/launcher.rasi -show-icons") },
+	{ Mod1Mask,                     XK_f,                     spawn,          SHCMD("rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi -show-icons") },
+	{ Mod1Mask,                     XK_c,                     spawn,          SHCMD("rofi -show calc -theme ~/.config/rofi/launcher.rasi") },
+	{ MODKEY,                       XK_e,                     spawn,          SHCMD("rofi -modi emoji -show emoji -theme ~/.config/rofi/launcher.rasi") },
+	{ MODKEY,                       XK_x,                     spawn,          SHCMD("rofi -show p -modi p:~/.config/rofi/off.sh -theme ~/.config/rofi/alt_launcher.rasi")},
 	{ MODKEY,                       XK_v,                     spawn,          SHCMD("clipboard_dmenu")},
 	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_dmenu")},
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
