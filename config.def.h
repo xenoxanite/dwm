@@ -155,7 +155,7 @@ static const Key keys[] = {
 	{ Mod1Mask,                     XK_f,                     spawn,          SHCMD("rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi -show-icons") },
 	{ Mod1Mask,                     XK_c,                     spawn,          SHCMD("rofi -show calc -theme ~/.config/rofi/launcher.rasi") },
 	{ MODKEY,                       XK_e,                     spawn,          SHCMD("rofi -modi emoji -show emoji -theme ~/.config/rofi/launcher.rasi") },
-	{ MODKEY,                       XK_x,                     spawn,          SHCMD("rofi -show p -modi p:~/.config/rofi/off.sh -theme ~/.config/rofi/alt_launcher.rasi")},
+	{ MODKEY,                       XK_x,                     spawn,          SHCMD("rofi -show p -modi p:~/.config/rofi/off.sh -theme ~/.config/rofi/launcher.rasi")},
 	{ MODKEY,                       XK_v,                     spawn,          SHCMD("clipboard_dmenu")},
 	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_dmenu")},
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
