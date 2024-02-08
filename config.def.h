@@ -75,10 +75,10 @@ static const Rule rules[] = {
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
 	{ "Pavucontrol",      NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
-	{ "Sxiv",             NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
+	{ "Nsxiv",             NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
-	{ "vesktop",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
+	{ "discord",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
 	{ "Nemo",             NULL,       NULL,           0,            1,          1,          0,         -1,       0 },
 	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
@@ -122,11 +122,11 @@ static const Layout layouts[] = {
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "160x35", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
-static const char *sptgptcmd[] = {"g", "st", "-t", "sptgpt", "-g", "160x35", "-e", "tgpt", "-m", NULL};
-static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "160x35", "-e", "btop", NULL};
-static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "160x35", "-e", "pulsemixer", NULL};
-static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "160x35", "-e", "calcurse", NULL};
+static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "140x30", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptgptcmd[] = {"g", "st", "-t", "sptgpt", "-g", "140x30", "-e", "tgpt", "-m", NULL};
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "140x30", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "140x30", "-e", "pulsemixer", NULL};
+static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "140x30", "-e", "calcurse", NULL};
 static const char *sprandomcmd[] = { "s",  NULL };
 
 /* commands */
