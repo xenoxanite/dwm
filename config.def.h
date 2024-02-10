@@ -20,13 +20,13 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showtitle          = 1;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 4;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
-static const int vertpadbar         = 8;       /* vertical padding for statusbar */
+static const int vertpadbar         = 12;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=Bold:size=11" };
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=Bold:size=11.14" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -57,6 +57,7 @@ static const char *const autostart[] = {
   "dunst", NULL,
   "xcompmgr", NULL,
   "greenclip", "daemon", NULL,
+  "ibus-daemon", NULL,
 	NULL /* terminate */
 };
 
@@ -122,11 +123,11 @@ static const Layout layouts[] = {
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "140x30", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
-static const char *sptgptcmd[] = {"g", "st", "-t", "sptgpt", "-g", "140x30", "-e", "tgpt", "-m", NULL};
-static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "140x30", "-e", "btop", NULL};
-static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "140x30", "-e", "pulsemixer", NULL};
-static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "140x30", "-e", "calcurse", NULL};
+static const char *sptermcmd[] = {"t", "st", "-t", "spterm", "-g", "130x25", "-e", "tmux", "new-session", "-A", "-s", "tmux", NULL};
+static const char *sptgptcmd[] = {"g", "st", "-t", "sptgpt", "-g", "130x25", "-e", "tgpt", "-m", NULL};
+static const char *sptopcmd[]  = {"p", "st", "-t", "sptop", "-g", "130x25", "-e", "btop", NULL};
+static const char *spmixcmd[]  = {"a", "st", "-t", "spmix", "-g", "130x25", "-e", "pulsemixer", NULL};
+static const char *spcldrcmd[] = {"c", "st", "-t", "spcldr", "-g", "130x25", "-e", "calcurse", NULL};
 static const char *sprandomcmd[] = { "s",  NULL };
 
 /* commands */
