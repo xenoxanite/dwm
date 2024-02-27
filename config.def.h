@@ -3,7 +3,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 8;        /* gaps between windows */
+static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int no_border = 1;        /* 1 means no border for single window */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -19,12 +19,12 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showtitle          = 0;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 2;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
 static const int vertpadbar         = 12;       /* vertical padding for statusbar */
-static const int vertpad            = 6;        /* vertical padding of bar */
-static const int sidepad            = 8;        /* horizontal padding of bar */
+static const int vertpad            = 0;        /* vertical padding of bar */
+static const int sidepad            = 0;        /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=bold:size=10.5" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -62,7 +62,7 @@ static const char *const autostart[] = {
 
 /* tagging */
 static const char buttonbar[] = "󰴈";
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 static const char *tagsalt[] = { "", "", "", "󰙯", "", "V", "U", "G", "F" };
 static const int momentaryalttags = 1; /* 1 means alttags will show only when key is held down*/
 
@@ -78,9 +78,10 @@ static const Rule rules[] = {
 	{ "Nsxiv",            NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
 	{ "neovim",           NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "firefox",          NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
+	{ "firefox",          NULL,       "Picture-in-Picture",     ~0,  1,          0,          0,         -1,       0 },
 	{ "discord",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
-	{ "Nemo",             NULL,       NULL,           0,            1,          1,          0,         -1,       0 },
+	{ "Nemo",             NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ "St",               NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ "Kitty",            NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
 	{ "kitty",            NULL,       NULL,           0,            0,          1,          0,         -1,       0 },
@@ -148,7 +149,7 @@ static const Key keys[] = {
 	/* modifier                     key                       function        argument */
 	{ MODKEY,                       XK_w,                     spawn,          SHCMD("set-wallpaper") },
 	{ MODKEY,                       XK_z,                     spawn,          SHCMD("rofi -show drun -theme ~/.config/rofi/launcher.rasi -show-icons") },
-	{ MODKEY,                       XK_n,                     spawn,          SHCMD("st -t neovim -c neovim -e nvim ~/dev") },
+	{ MODKEY,                       XK_n,                     spawn,          SHCMD("st -t neovim -c neovim -e nvim") },
 	{ Mod1Mask,                     XK_f,                     spawn,          SHCMD("rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi -show-icons") },
 	{ Mod1Mask,                     XK_c,                     spawn,          SHCMD("rofi -show calc -theme ~/.config/rofi/launcher.rasi") },
 	{ MODKEY,                       XK_e,                     spawn,          SHCMD("rofi -modi emoji -show emoji -theme ~/.config/rofi/launcher.rasi") },
