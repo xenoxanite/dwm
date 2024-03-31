@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int no_border = 1;        /* 1 means no border for single window */
 static const unsigned int snap      = 5;        /* snap pixel */
@@ -25,7 +25,7 @@ static const int horizpadbar        = 4;       /* horizontal padding for statusb
 static const int vertpadbar         = 12;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=bold:size=10.5" };
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=bold:size=11" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
