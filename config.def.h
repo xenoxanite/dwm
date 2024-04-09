@@ -25,7 +25,7 @@ static const int horizpadbar        = 4;       /* horizontal padding for statusb
 static const int vertpadbar         = 12;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=bold:size=11" };
+static const char *fonts[]          = { "JetbrainsMono Nerd Font:size=12:style=bold" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -155,7 +155,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_e,                     spawn,          SHCMD("rofi -modi emoji -show emoji -theme ~/.config/rofi/launcher.rasi") },
 	{ MODKEY,                       XK_x,                     spawn,          SHCMD("rofi -show p -modi p:~/.config/rofi/off.sh -theme ~/.config/rofi/launcher.rasi")},
 	{ MODKEY,                       XK_v,                     spawn,          SHCMD("clipboard_dmenu")},
-	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("$HOME/.local/bin/screenshot_dmenu")},
+	{ MODKEY,                       XK_Print,       					spawn,          SHCMD("screenshot_dmenu")},
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{0,                             XF86XK_AudioRaiseVolume,  spawn,          {.v = volumecmd[0]} },
 	{0,                             XF86XK_AudioLowerVolume,  spawn,          {.v = volumecmd[1]} },
