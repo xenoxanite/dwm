@@ -25,7 +25,7 @@ static const int horizpadbar        = 4;       /* horizontal padding for statusb
 static const int vertpadbar         = 12;       /* vertical padding for statusbar */
 static const int vertpad            = 0;        /* vertical padding of bar */
 static const int sidepad            = 0;        /* horizontal padding of bar */
-static const char *fonts[]          = { "JetbrainsMono Nerd Font:size=12:style=bold" };
+static const char *fonts[]          = { "CaskaydiaCove Nerd Font:size=12:style=bold" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
