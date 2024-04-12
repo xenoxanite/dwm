@@ -57,6 +57,7 @@ static const char *const autostart[] = {
   "xcompmgr", NULL,
   "greenclip", "daemon", NULL,
   "ibus-daemon", NULL,
+  "discord", "--start-minimized", NULL,
 	NULL /* terminate */
 };
 
