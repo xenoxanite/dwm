@@ -134,15 +134,18 @@ static const char *sprandomcmd[] = { "s",  NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static const char *volumecmd[3][5] = {
-	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05+", NULL },
-	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05-", NULL },
-	{ "wpctl", "set-mute", "@DEFAULT_SINK@", "toggle", NULL },
+	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05+", "pkill", "-RTMIN+2", "dwmblocks", NULL },
+	{ "wpctl", "set-volume", "@DEFAULT_SINK@", "0.05-", "pkill", "-RTMIN+2", "dwmblocks", NULL },
+	{ "wpctl", "set-mute", "@DEFAULT_SINK@", "toggle", "pkill", "-RTMIN+2", "dwmblocks", NULL },
 };
 static const char *playerctlcmd[3][3] = {
 	{ "playerctl", "play-pause", NULL },
 	{ "playerctl", "next", NULL },
 	{ "playerctl", "previous", NULL },
 };
+
+
+
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static const Key keys[] = {
