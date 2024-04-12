@@ -51,14 +51,12 @@ static const char *colors[][3]      = {
 /* autostart applications */
 static const char *const autostart[] = {
   "load-wallpaper", NULL,
-  "schedule-power-off", NULL,
   "dwmblocks", NULL,
   "dunst", NULL,
   "xcompmgr", NULL,
   "greenclip", "daemon", NULL,
   "ibus-daemon", NULL,
-  "discord", "--start-minimized", NULL,
-	NULL /* terminate */
+  "discord", "--start-minimized", NULL /* terminate */
 };
 
 /* tagging */
