@@ -167,6 +167,7 @@ static const Key keys[] = {
  	{0,                             XF86XK_AudioPrev,         spawn,          {.v = playerctlcmd[2]} },
  	{ MODKEY,                       XK_F5,					          xrdb,           {.v = NULL } },
 	{ MODKEY,                       XK_b,                     togglebar,      {0} },
+  { MODKEY,			                  XK_s,		                  togglesticky,	  {0} },
   { MODKEY,                       XK_j,                     focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                     focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_u,                     focusurgent,    {0} },
@@ -222,9 +223,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_a,      togglescratch,  {.v = spmixcmd } },
 	{ MODKEY,                       XK_c,      togglescratch,  {.v = spcldrcmd } },
 	{ MODKEY,                       XK_p,      togglescratch,  {.v = sptopcmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = sprandomcmd } },
-	{ MODKEY|ShiftMask,             XK_s,      setscratch,     {.v = sprandomcmd } },
-	{ MODKEY|ControlMask,           XK_s,      removescratch,  {.v = sprandomcmd } },
+	{ MODKEY,                       XK_o,      togglescratch,  {.v = sprandomcmd } },
+	{ MODKEY|ShiftMask,             XK_o,      setscratch,     {.v = sprandomcmd } },
+	{ MODKEY|ControlMask,           XK_o,      removescratch,  {.v = sprandomcmd } },
 	/* program binds */
 };
 
