@@ -386,6 +386,8 @@ static xcb_connection_t *xcon;
 /* configuration, allows nested code to access above variables */
 #include "config.h"
 
+static int spd = sidepad, vpd = vertpad;
+
 struct Pertag {
 	unsigned int curtag, prevtag; /* current and previous tag */
 	int nmasters[LENGTH(tags) + 1]; /* number of windows in master area */
@@ -1672,6 +1674,7 @@ loadxrdb()
     }
   }
 
+  drawbars();
   XCloseDisplay(display);
 }
 
@@ -1797,13 +1800,17 @@ monocle(Monitor *m)
 	unsigned int n = 0;
 	Client *c;
 
+  spd = 0, vpd = 0;
+	sp = spd,	vp = (topbar == 1) ? vpd : - vpd;
+  updatebarpos(m);
+
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next)) {
-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx, m->wy, m->ww - 3 * c->bw, m->wh - 2 * c->bw, 0);
     // resize(c, m->wx + gappx, m->wy + gappx, m->ww - 2 * c->bw - gappx * 2, m->wh - 2 * c->bw - gappx * 2, 0); 
   }
 }
@@ -2100,7 +2107,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
 	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
 	    && !c->isfullscreen && !c->isfloating
-	    && NULL != c->mon->lt[c->mon->sellt]->arrange && no_border && !(&tile == c->mon->lt[c->mon->sellt]->arrange)) {
+	    && NULL != c->mon->lt[c->mon->sellt]->arrange && !(&tile == c->mon->lt[c->mon->sellt]->arrange)) {
 		c->w = wc.width += c->bw * 2;
 		c->h = wc.height += c->bw * 2;
 		wc.border_width = 0;
@@ -2480,8 +2487,8 @@ setup(void)
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
 	bh = drw->fonts->h + vertpadbar + user_bh;
-	sp = sidepad;
-	vp = (topbar == 1) ? vertpad : - vertpad;
+	sp = spd;
+	vp = (topbar == 1) ? vpd : - vpd;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
@@ -2714,6 +2721,12 @@ tile(Monitor *m)
 	unsigned int i, n, h, mw, my, ty;
 	float mfacts = 0, sfacts = 0;
 	Client *c;
+
+
+
+  spd = sidepad, vpd = vertpad;
+	sp = spd,	vp = (topbar == 1) ? vpd : - vpd;
+  updatebarpos(m);
 
 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++) {
 		if (n < m->nmaster)
