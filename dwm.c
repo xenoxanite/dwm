@@ -386,6 +386,8 @@ static xcb_connection_t *xcon;
 /* configuration, allows nested code to access above variables */
 #include "config.h"
 
+static int spad = sidepad, vpad = vertpad;
+
 struct Pertag {
 	unsigned int curtag, prevtag; /* current and previous tag */
 	int nmasters[LENGTH(tags) + 1]; /* number of windows in master area */
@@ -455,17 +457,24 @@ applyrules(Client *c)
 			c->isfloating = r->isfloating;
 			c->tags |= r->tags;
 			c->scratchkey = r->scratchkey;
-
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
-				c->mon = m;
+      {
+        c->mon = m;
+      }
+      
 		}
+
 	}
 	if (ch.res_class)
 		XFree(ch.res_class);
 	if (ch.res_name)
 		XFree(ch.res_name);
 	c->tags = c->tags & TAGMASK ? c->tags & TAGMASK : c->mon->tagset[c->mon->seltags];
+  if(follow){
+    Arg a = {.ui = c->tags};
+    view(&a);
+  }
 }
 
 int
@@ -1222,14 +1231,14 @@ drawbar(Monitor *m)
   if (showlayout) {
     w = TEXTW(m->ltsymbol);
     drw_setscheme(drw, scheme[SchemeLayout]);
-    x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+    x = drw_text(drw, x, 0, w, bh, (lrpad / 2) - 2, m->ltsymbol, 0);
   }
   
 
 	if ((w = m->ww - tw - stw - x - sp) > bh) {
 		if (m->sel && showtitle) {
 			drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]);
-			drw_text(drw, x - 2 * sp, vertpadbar / 2, w, bh - vertpadbar, lrpad / 2, m->sel->name, 0);
+			drw_text(drw, x - 1 * sp, vertpadbar / 2, w, bh - vertpadbar, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating && showfloating)
 				drw_rect(drw, x + boxs, boxs + vertpadbar / 2, boxw, boxw, m->sel->isfixed, 0);
 		} else {
@@ -1797,6 +1806,10 @@ monocle(Monitor *m)
 	unsigned int n = 0;
 	Client *c;
 
+  spad = 0, vpad = 0;
+	sp = spad, vp = (topbar == 1) ? vpad : - vpad;
+  updategeom(), updatebars(), updatebarpos(m);
+
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
@@ -2100,7 +2113,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
 	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
 	    && !c->isfullscreen && !c->isfloating
-	    && NULL != c->mon->lt[c->mon->sellt]->arrange && no_border && !(&tile == c->mon->lt[c->mon->sellt]->arrange)) {
+	    && NULL != c->mon->lt[c->mon->sellt]->arrange) {
 		c->w = wc.width += c->bw * 2;
 		c->h = wc.height += c->bw * 2;
 		wc.border_width = 0;
@@ -2480,8 +2493,8 @@ setup(void)
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
 	bh = drw->fonts->h + vertpadbar + user_bh;
-	sp = sidepad;
-	vp = (topbar == 1) ? vertpad : - vertpad;
+	sp = spad;
+	vp = (topbar == 1) ? vpad : - vpad;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
@@ -2689,6 +2702,8 @@ tag(const Arg *arg)
 		setclienttagprop(c);
 		focus(NULL);
 		arrange(selmon);
+		if(viewontag && ((arg->ui & TAGMASK) != TAGMASK))
+      view(arg);
 	}
 }
 
@@ -2714,6 +2729,12 @@ tile(Monitor *m)
 	unsigned int i, n, h, mw, my, ty;
 	float mfacts = 0, sfacts = 0;
 	Client *c;
+
+
+
+  spad = sidepad, vpad = vertpad;
+	sp = spad, vp = (topbar == 1) ? vpad : - vpad;
+  updategeom(), updatebars(), updatebarpos(m);
 
 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++) {
 		if (n < m->nmaster)
@@ -3086,8 +3107,8 @@ updatebarpos(Monitor *m)
 	m->wy = m->my;
 	m->wh = m->mh;
 	if (m->showbar) {
-		m->wh = m->wh - vertpad - bh;
-		m->by = m->topbar ? m->wy : m->wy + m->wh + vertpad;
+		m->wh = m->wh - vpad - bh;
+		m->by = m->topbar ? m->wy : m->wy + m->wh + vpad;
 		m->wy = m->topbar ? m->wy + bh + vp : m->wy;
 	} else
 		m->by = -bh - vp;
