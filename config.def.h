@@ -3,7 +3,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 14;        /* gaps between windows */
+static const unsigned int gappx     = 16;        /* gaps between windows */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -22,8 +22,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 12;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
 static const int vertpadbar         = 0;       /* vertical padding for statusbar */
-static const int vertpad            = 14;        /* vertical padding of bar */
-static const int sidepad            = 14;        /* horizontal padding of bar */
+static const int vertpad            = 16;        /* vertical padding of bar */
+static const int sidepad            = 16;        /* horizontal padding of bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const Bool follow            = True;
 static const char *fonts[]          = { "JetbrainsMono Nerd Font:size=17:style=semibold" };
@@ -75,6 +75,7 @@ static const Rule rules[] = {
 	 */
 	/* class              instance    title           tags mask     isfloating  isterminal  noswallow  monitor   scratch key */
 	{ "Nsxiv",            NULL,       NULL,           0,            1,          0,          0,         -1,       0 },
+	{ "Emacs",            NULL,       NULL,           1 << 1,       0,          0,          0,         -1,       0 },
 	{ "Spotify",          NULL,       NULL,           1 << 4,       0,          0,          0,         -1,       0 },
 	{ "vesktop",          NULL,       NULL,           1 << 3,       0,          0,          0,         -1,       0 },
 	{ "qutebrowser",      NULL,       NULL,           1 << 2,       0,          0,          0,         -1,       0 },
