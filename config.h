@@ -3,7 +3,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 16;        /* gaps between windows */
+static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -15,17 +15,17 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int showbutton         = 0;        /* 0 means no button */
 static const int showtags           = 1;        /* 0 means no tags */
 static const int showlayout         = 1;        /* 0 means no layout indicator */
-static const int showtitle          = 1;        /* 0 means no title */
+static const int showtitle          = 0;        /* 0 means no title */
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 12;        /* 2 is the default spacing around the bar's font */
 static const int horizpadbar        = 4;       /* horizontal padding for statusbar */
 static const int vertpadbar         = 0;       /* vertical padding for statusbar */
-static const int vertpad            = 16;        /* vertical padding of bar */
-static const int sidepad            = 16;        /* horizontal padding of bar */
+static const int vertpad            = 10;        /* vertical padding of bar */
+static const int sidepad            = 10;        /* horizontal padding of bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const Bool follow            = True;
+static const Bool follow            = False;
 static const char *fonts[]          = { "JetbrainsMono Nerd Font:size=17:style=semibold" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -49,14 +49,14 @@ static char *colors[][3]      = {
 	[SchemeScratchNorm] = {selbgcolor,        normfgcolor,        normbordercolor },
 };
 
+
 /* autostart applications */
 static const char *const autostart[] = {
   "load-wallpaper", NULL,
   "dwmblocks", NULL,
   "dunst", NULL,
-  "xcompmgr", NULL,
+  // "xcompmgr", NULL,
   "greenclip", "daemon", NULL,
-  "pipewire", NULL,
    NULL /* terminate */
 };
 
@@ -149,6 +149,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_x,                     spawn,          SHCMD("rofi -show p -modi p:~/.config/rofi/off.sh -theme ~/.config/rofi/launcher.rasi")},
 	{ MODKEY,                       XK_v,                     spawn,          SHCMD("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}' -theme ~/.config/rofi/launcher.rasi")},
 	{0,                             XK_Print,       					spawn,          SHCMD("screenshot_dmenu")},
+	{ShiftMask,                             XK_Print,       					spawn,          SHCMD("screenshot_dmenu_c")},
 	{ MODKEY,                       XK_Return,                spawn,          {.v = termcmd } },
 	{ShiftMask,                             XK_F12,                   spawn,          {.v = volumecmd[0]} },
 	{ShiftMask,                             XK_F11,                   spawn,          {.v = volumecmd[1]} },

@@ -17,7 +17,7 @@
  * client.
  *
  * Keys and tagging rules are organized as arrays and defined in config.h.
- *
+ *dwm.c
  * To understand everything else, start reading main().
  */
 #include <X11/Xatom.h>
@@ -136,7 +136,7 @@ enum {
   NetClientList,
   NetClientInfo,
   NetLast
-};                                           /* EWMH atoms */
+}; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum {
   WMProtocols,
@@ -1273,8 +1273,9 @@ void drawbar(Monitor *m) {
   if ((w = m->ww - tw - stw - x - sp) > bh) {
     if (m->sel && showtitle) {
       drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]);
-      drw_text(drw, x - 1 * sp, vertpadbar / 2, w, bh - vertpadbar, lrpad / 2,
-               m->sel->name, 0);
+      drw_text(drw, x - (sp == 0 ? 10 : 0), vertpadbar / 2,
+               w - (sp == 0 ? -30 : sp * 4), bh - vertpadbar, 0, m->sel->name,
+               0);
       if (m->sel->isfloating && showfloating)
         drw_rect(drw, x + boxs, boxs + vertpadbar / 2, boxw, boxw,
                  m->sel->isfixed, 0);
@@ -1288,7 +1289,6 @@ void drawbar(Monitor *m) {
 
 void drawbars(void) {
   Monitor *m;
-
   for (m = mons; m; m = m->next)
     drawbar(m);
 }
