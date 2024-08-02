@@ -26,7 +26,7 @@ static const int vertpad            = 10;        /* vertical padding of bar */
 static const int sidepad            = 10;        /* horizontal padding of bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const Bool follow            = False;
-static const char *fonts[]          = { "JetbrainsMono Nerd Font:size=17:style=semibold" };
+static const char *fonts[]          = { "Terminess Nerd Font:size=17:style=semibold" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
